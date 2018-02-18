@@ -12,10 +12,16 @@ import Servant.Client
 api :: Proxy LightsAPI
 api = Proxy
 
-lightsOff :: String -> Text -> IO (Either ServantError Text)
-lightsOff bridgePort lightId = do
+stateChange :: String -> Text -> StateChange -> IO (Either ServantError Text)
+stateChange bridgeIp lightId newState = do
   manager' <- newManager defaultManagerSettings
-  runClientM (lightState (Username "foTHIvt54544Wa9nf5YiSKMSVi6EUBviMAKl1ong") lightId  $ On False <> mempty) (ClientEnv manager' (BaseUrl Http bridgePort 80 ""))
+  runClientM (lightState (Username "foTHIvt54544Wa9nf5YiSKMSVi6EUBviMAKl1ong") lightId  newState) (ClientEnv manager' (BaseUrl Http bridgeIp 80 ""))
+
+lightsOff :: String -> Text -> IO (Either ServantError Text)
+lightsOff ip lightId = stateChange ip lightId $ On False <> Done
+
+lightsOn :: String -> Text -> IO (Either ServantError Text)
+lightsOn ip lightId = stateChange ip lightId $ On True <> Done
 
 lights :: Username -> ClientM (Map Int Light)
 lightState :: Username -> Text -> StateChange -> ClientM Text

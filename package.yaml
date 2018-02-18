@@ -30,9 +30,12 @@ library:
   - containers
   - freer-simple
   - http-client
+  - servant
   - servant-client
   - servant-server
   - text
+  - wai
+  - warp
   default-extensions:
   - DataKinds
   - OverloadedStrings

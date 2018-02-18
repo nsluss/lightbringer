@@ -6,11 +6,14 @@ import GHC.Generics
 import HueAPI
 
 someFunc :: IO ()
-someFunc = do
+someFunc = putStrLn "hello"
+
+turnALightOff :: IO ()
+turnALightOff = do
   putStrLn "someFunc"
   config <- readConfig
   case config of
-    Just (Config port) -> lightsOff port "1" >> putStrLn "done"
+    Just (Config ip) -> lightsOff ip "1" >> putStrLn "done"
     Nothing -> putStrLn "no config"
 
 readConfig :: IO (Maybe Config)
@@ -18,7 +21,7 @@ readConfig = decode <$> BS.readFile "config.json"
 
 data Config =
   Config {
-    bridgePort :: String
+    bridgeIp :: String
   } deriving (Show, Generic)
 
 instance FromJSON Config

@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a50361c0df3b2231bb6c9ec747d0734ceffdd6099572a53fe95cfa5a283562d8
+-- hash: ddfe62b050e2054da98fc09f52225a8b1a9131400f36267d993b20404c3d5207
 
 name:           lightbringer
 version:        0.1.0.0
@@ -36,12 +36,16 @@ library
     , containers
     , freer-simple
     , http-client
+    , servant
     , servant-client
     , servant-server
     , text
+    , wai
+    , warp
   exposed-modules:
       HueAPI
       Lib
+      WebApp
   other-modules:
       Paths_lightbringer
   default-language: Haskell2010
