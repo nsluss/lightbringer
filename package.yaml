@@ -1,10 +1,10 @@
 name:                lightbringer
 version:             0.1.0.0
-github:              "githubuser/lightbringer"
-license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2018 Author name here"
+github:              "nsluss/lightbringer"
+license:             MIT
+author:              "Noah Sluss"
+maintainer:          "slussnoah@gmail.com"
+copyright:           "2018 Noah Sluss"
 
 extra-source-files:
 - README.md
@@ -24,6 +24,21 @@ dependencies:
 
 library:
   source-dirs: src
+  dependencies:
+  - aeson
+  - bytestring
+  - containers
+  - freer-simple
+  - http-client
+  - servant-client
+  - servant-server
+  - text
+  default-extensions:
+  - DataKinds
+  - OverloadedStrings
+  - TypeOperators
+  - GADTs
+  - DeriveGeneric
 
 executables:
   lightbringer-exe:
@@ -46,3 +61,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - lightbringer
+    - hspec
